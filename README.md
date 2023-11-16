@@ -40,3 +40,7 @@ jobs:
       result: ${{ needs.release.result }}
       channel: YOUR_CHANNEL_TO_POST_MESSAGES
 ```
+
+![image](https://github.com/ho-nl/release-slack-action/assets/5382391/fcc383c9-533f-4a17-8be5-8a5202cedffd)
+![image](https://github.com/ho-nl/release-slack-action/assets/5382391/4d4ecc08-e9ff-4783-9bd3-4c61c81dabee)
+
