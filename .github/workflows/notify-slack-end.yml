@@ -1,0 +1,64 @@
+name: Release
+on:
+  workflow_call:
+    inputs:
+      channel:
+        required: true
+        type: string
+      time:
+        required: true
+        type: string
+      result:
+        required: true
+        type: string
+    secrets:
+      slackToken:
+        description: 'A slack bot token, used for sending messages'
+        required: true
+jobs:
+  notify-start:
+    name: Notify release end
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set environment variables
+        run: |
+          echo "time_seconds=$(( $(date +%s) - ${{ inputs.time }}  ))" >> "$GITHUB_ENV"
+          echo "cut_sha=$(cut -c 1-7 <<<  ${{ github.sha }})" >> "$GITHUB_ENV"
+      - name: Parse time
+        run: |
+          echo "parsed_time=`printf '%d min and %d sec \n' $(( ${{ env.time_seconds }}%3600/60 )) $((${{ env.time_seconds }}%60))`" >> "$GITHUB_ENV"
+
+      - name: Post to a Slack channel
+        id: slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          channel-id: ${{ inputs.channel}}
+          payload: |
+              {
+                "attachments": [
+                  {
+                    "color": "${{ inputs.result == 'success' && '#36a64f' || '#FF0000' }}",
+                    "blocks": [
+                      {
+                        "type": "section",
+                        "text": {
+                          "type": "mrkdwn",
+                          "text": "*${{ github.event.repository.name }} - Action - ${{ github.workflow }}* \n <${{ github.event.repository.url }}/commit/${{ github.sha }} | ${{ env.cut_sha }}> (<${{ github.event.repository.url }}/actions/runs/${{ github.run_id }} | open>)"
+                        }
+                      },
+                      {
+                        "type": "context",
+                        "elements": [
+                          {
+                            "type": "plain_text",
+                            "text": "${{ inputs.result }} after ${{ env.parsed_time }}",
+                            "emoji": true
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.slackToken }}
