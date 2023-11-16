@@ -1,4 +1,4 @@
-# release-slack-action
+![image](https://github.com/ho-nl/release-slack-action/assets/5382391/f9813588-f4db-4a80-aa16-527a071f24ce)# release-slack-action
 
 
 Reusable workflow used for sending slack messages regarding the satus of a release.
@@ -40,3 +40,7 @@ jobs:
       result: ${{ needs.release.result }}
       channel: YOUR_CHANNEL_TO_POST_MESSAGES
 ```
+
+![image](https://github.com/ho-nl/release-slack-action/assets/5382391/fcc383c9-533f-4a17-8be5-8a5202cedffd)
+![image](https://github.com/ho-nl/release-slack-action/assets/5382391/4d4ecc08-e9ff-4783-9bd3-4c61c81dabee)
+
