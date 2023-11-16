@@ -51,7 +51,7 @@ jobs:
                         "elements": [
                           {
                             "type": "plain_text",
-                            "text": "${{ inputs.result }} after ${{ env.parsed_time }}",
+                            "text": "${{ inputs.result == 'success' && 'Success' || 'Failure' }} after ${{ env.parsed_time }}",
                             "emoji": true
                           }
                         ]
