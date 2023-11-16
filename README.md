@@ -1,4 +1,4 @@
-![image](https://github.com/ho-nl/release-slack-action/assets/5382391/f9813588-f4db-4a80-aa16-527a071f24ce)# release-slack-action
+# release-slack-action
 
 
 Reusable workflow used for sending slack messages regarding the satus of a release.
