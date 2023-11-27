@@ -5,6 +5,9 @@ on:
       channel:
         required: true
         type: string
+      notify:
+        required: false
+        type: string
     outputs:
       time:
         description: "Start of the release in seconds"
@@ -16,6 +19,7 @@ on:
 jobs:
   notify-start:
     name: Notify release start
+    if: ${{ inputs.notify !== 'failure'}}
     runs-on: ubuntu-latest
     outputs:
       output: ${{ steps.time.outputs.time }}
