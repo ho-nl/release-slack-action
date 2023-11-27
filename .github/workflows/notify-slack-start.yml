@@ -19,7 +19,7 @@ on:
 jobs:
   notify-start:
     name: Notify release start
-    if: ${{ inputs.notify !== 'failure'}}
+    if: ${{ inputs.notify != 'failure'}}
     runs-on: ubuntu-latest
     outputs:
       output: ${{ steps.time.outputs.time }}
