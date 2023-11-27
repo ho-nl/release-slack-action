@@ -26,7 +26,6 @@ jobs:
     steps:
       - name: Set environment variables
         run: |
-          echo ${{ toJson(inputs) }}
           echo "time_seconds=$(( $(date +%s) - ${{ inputs.time }}  ))" >> "$GITHUB_ENV"
           echo "cut_sha=$(cut -c 1-7 <<<  ${{ github.sha }})" >> "$GITHUB_ENV"
       - name: Parse time
