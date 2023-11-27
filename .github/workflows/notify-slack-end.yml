@@ -21,7 +21,7 @@ on:
 jobs:
   notify-start:
     name: Notify release end
-    if: ${{ inputs.notify != 'failure' || inputs.result == 'failure'}}
+    if: ${{ inputs.notify != 'failure' || inputs.result != 'success'}}
     runs-on: ubuntu-latest
     steps:
       - name: Set environment variables
