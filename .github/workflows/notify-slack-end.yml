@@ -8,9 +8,9 @@ on:
       time:
         required: true
         type: string
-      notify:
-        required: false
-        type: string
+      notifyOnlyOnFailure:
+        required: true
+        type: boolean
       result:
         required: true
         type: string
@@ -21,7 +21,7 @@ on:
 jobs:
   notify-start:
     name: Notify release end
-    if: ${{ inputs.notify != 'failure' || inputs.result != 'success' }}
+    if: ${{ inputs.notifyOnlyOnFailure != 'failure' || inputs.result != 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: Set environment variables
