@@ -21,6 +21,7 @@ jobs:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
       channel: YOUR_CHANNEL_TO_POST_MESSAGES
+      notifyOnlyOnFailure: boolean
 
 # This would be your actual deployment job
   release:
@@ -39,6 +40,7 @@ jobs:
       time: ${{ needs.notify-start.outputs.time }}
       result: ${{ needs.release.result }}
       channel: YOUR_CHANNEL_TO_POST_MESSAGES
+      notifyOnlyOnFailure: boolean
 ```
 
 ![image](https://github.com/ho-nl/release-slack-action/assets/5382391/fcc383c9-533f-4a17-8be5-8a5202cedffd)
