@@ -20,6 +20,7 @@ jobs:
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
+      message: CUSTOM_MESSAGE (optional if no message is provided, the repository name will be used)
       channel: YOUR_CHANNEL_TO_POST_MESSAGES
       notifyOnlyOnFailure: boolean
 
@@ -39,6 +40,7 @@ jobs:
     with:
       time: ${{ needs.notify-start.outputs.time }}
       result: ${{ needs.release.result }}
+      message: CUSTOM_MESSAGE (optional if no message is provided, the repository name will be used)
       channel: YOUR_CHANNEL_TO_POST_MESSAGES
       notifyOnlyOnFailure: boolean
 ```
