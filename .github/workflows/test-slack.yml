@@ -14,7 +14,7 @@ jobs:
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
-      channel: 12gobiking-test
+      channel: qplus
       message: Test
       notifyOnlyOnFailure: false
 
@@ -36,6 +36,6 @@ jobs:
     with:
       time: ${{ needs.notify-start.outputs.time }}
       result: ${{ needs.release.result }}
-      channel: 12gobiking-test
+      channel: qplus
       message: Test
       notifyOnlyOnFailure: false
