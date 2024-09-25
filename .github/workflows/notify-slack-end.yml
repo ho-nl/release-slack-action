@@ -50,7 +50,7 @@ jobs:
                         "type": "section",
                         "text": {
                           "type": "mrkdwn",
-                          "text": "*${{ inputs.message && inputs.message || github.event.repository.name }} - ${{ github.workflow }}* \n <${{ github.event.repository.url }}/commit/${{ github.sha }} | ${{ env.cut_sha }}> (<${{ github.event.repository.url }}/actions/runs/${{ github.run_id }} | open>)"
+                          "text": "*${{ inputs.message && inputs.message || github.event.repository.name }} - ${{ github.workflow }}* \n <${{ github.event.repository.html_url }}/commit/${{ github.sha }} | ${{ env.cut_sha }}> (<${{ github.event.repository.html_url }}/actions/runs/${{ github.run_id }} | open>)"
                         }
                       },
                       {
@@ -58,7 +58,7 @@ jobs:
                         "elements": [
                           {
                             "type": "plain_text",
-                            "text": "${{ inputs.result == 'success' && 'Success' || 'Failure' }} after ${{ env.parsed_time }}",
+                            "text": "${{ inputs.result == 'success' && 'Success' || inputs.result == 'cancelled' && 'Cancelled' || 'Failure' }} after ${{ env.parsed_time }}",
                             "emoji": true
                           }
                         ]

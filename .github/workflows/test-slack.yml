@@ -10,7 +10,7 @@ concurrency:
 jobs:
   notify-start:
     name: Notify release start
-    uses: ho-nl/release-slack-action/.github/workflows/notify-slack-start.yml@main
+    uses: ./.github/workflows/notify-slack-start.yml
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
@@ -29,13 +29,13 @@ jobs:
   notify-end:
     if: always()
     name: Notify release end
-    needs: [ notify-start, activate-pm2 ]
-    uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
+    needs: [ notify-start, release ]
+    uses: ./.github/workflows/notify-slack-end.yml
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
       time: ${{ needs.notify-start.outputs.time }}
-      result: ${{ needs.activate-pm2.result }}
+      result: ${{ needs.release.result }}
       channel: 12gobiking-test
       message: Test
       notifyOnlyOnFailure: false
