@@ -10,7 +10,7 @@ concurrency:
 jobs:
   notify-start:
     name: Notify release start
-    uses: ho-nl/release-slack-action/.github/workflows/notify-slack-start.yml@main
+    uses: ./.github/workflows/notify-slack-start.yml
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
@@ -30,7 +30,7 @@ jobs:
     if: always()
     name: Notify release end
     needs: [ notify-start, release ]
-    uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
+    uses: ./.github/workflows/notify-slack-end.yml
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
