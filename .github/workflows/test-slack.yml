@@ -14,7 +14,7 @@ jobs:
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
-      channel: 12gobiking-test
+      channel: slack-test-messages
       message: Test
       notifyOnlyOnFailure: false
 
@@ -29,13 +29,13 @@ jobs:
   notify-end:
     if: always()
     name: Notify release end
-    needs: [ notify-start, activate-pm2 ]
+    needs: [ notify-start, release ]
     uses: ho-nl/release-slack-action/.github/workflows/notify-slack-end.yml@main
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
       time: ${{ needs.notify-start.outputs.time }}
-      result: ${{ needs.activate-pm2.result }}
-      channel: 12gobiking-test
+      result: ${{ needs.release.result }}
+      channel: slack-test-messages
       message: Test
       notifyOnlyOnFailure: false
