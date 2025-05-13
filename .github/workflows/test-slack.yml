@@ -14,9 +14,9 @@ jobs:
     secrets:
       slackToken: ${{ secrets.SLACK_BOT_RELEASE_TOKEN}}
     with:
-      channel: 12gobiking-test
+      channel: slack-test-messages
       message: Test
-      notifyOnlyOnFailure: false
+      notifyOnlyOnFailure: true
 
   release:
     runs-on: ubuntu-latest
@@ -36,6 +36,6 @@ jobs:
     with:
       time: ${{ needs.notify-start.outputs.time }}
       result: ${{ needs.release.result }}
-      channel: 12gobiking-test
+      channel: slack-test-messages
       message: Test
-      notifyOnlyOnFailure: false
+      notifyOnlyOnFailure: true
