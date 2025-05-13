@@ -23,7 +23,7 @@ jobs:
     name: release
     steps:
       - name: sleep
-        run: sleep 10s
+        run: sleep 10s;
         shell: bash
 
   notify-end:

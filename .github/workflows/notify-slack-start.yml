@@ -22,7 +22,6 @@ on:
 jobs:
   notify-start:
     name: Notify release start
-    if: ${{ inputs.notifyOnlyOnFailure == false}}
     runs-on: ubuntu-latest
     outputs:
       output: ${{ steps.time.outputs.time }}
@@ -34,6 +33,7 @@ jobs:
           echo "cut_sha=$(cut -c 1-7 <<<  ${{ github.sha }})" >> "$GITHUB_ENV"
           echo ${{ secrets.SLACK_BOT_USER_OAUTH_ACCESS_TOKEN }}
       - name: Post to a Slack channel
+        if: ${{ inputs.notifyOnlyOnFailure == false}}
         id: slack
         uses: slackapi/slack-github-action@v1.24.0
         with:
